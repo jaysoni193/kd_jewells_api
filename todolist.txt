@@ -1,0 +1,5 @@
+npm install 
+Packages: nodemon express mongoose multer body-parser helmet morgan corse
+
+
+//Video is stop around 12.32
