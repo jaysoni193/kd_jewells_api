@@ -1,5 +1,6 @@
 npm install 
 Packages: nodemon express mongoose multer body-parser helmet morgan corse
+uuid ()
+//Users -> Model, Routes and Controllers
 
-
-//Video is stop around 12.32
+//video 42.28
