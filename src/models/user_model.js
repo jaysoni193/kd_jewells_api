@@ -26,7 +26,7 @@ userSchema.pre('save', function (next) {
 
 });
 userSchema.pre(['update', 'findOneAndUpdate', 'updateOne'], function (next) {
-    const uodate = this.getUpdate();
+    const update = this.getUpdate();
     delete upadate._id;
     delete upadate.id;
 

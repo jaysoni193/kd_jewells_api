@@ -11,7 +11,7 @@ const UserController = {
             return res.json({ success: true, data: newUser, message: "User created!" });
         }
         catch (ex) {
-            return res.status(400).json({ success: false, message: ex });
+            return res.json({ success: false, message: ex });
         }
     },
 
@@ -31,7 +31,7 @@ const UserController = {
 
         }
         catch (ex) {
-            return res.status(400).json({ success: false, message: ex });
+            return res.json({ success: false, message: ex });
         }
     }
 };

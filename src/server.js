@@ -18,6 +18,9 @@ mongoose.connect("mongodb+srv://Jaysoni:Jaysoni001@cluster0.5ozekes.mongodb.net/
 const UserRoutes = require('./routes/user_routes');
 app.use("/api/user", UserRoutes);
 
+const CategoryRoutes = require('./routes/category_routes');
+app.use("/api/category", CategoryRoutes);
+
 const PORT = 5000;
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
