@@ -1,7 +1,8 @@
-const UserModel = require('../models/user_model');
+const UserModel = require('./../models/user_model');
 const bcrypt = require('bcrypt');
 
 const UserController = {
+
     createAccount: async function (req, res) {
         try {
             const userData = req.body;
@@ -18,22 +19,46 @@ const UserController = {
     signIn: async function (req, res) {
         try {
             const { email, password } = req.body;
-            const findUser = await UserModel.findOne({ email: email });
-            if (!findUser) {
-                return res.status(404).json({ success: false, message: "User not found!" });
-            }
-            const isPasswordMatch = bcrypt.compareSync(password, findUser.password);
-            if (!isPasswordMatch) {
-                return res.status(401).json({ success: false, message: "Invalid password!" });
-            }
-            return res.json({ success: true, data: findUser, message: "Sign-in successful!" });
 
+            const foundUser = await UserModel.findOne({ email: email });
+            if (!foundUser) {
+                return res.json({ success: false, message: "User not found!" });
+            }
 
+            const passwordsMatch = bcrypt.compareSync(password, foundUser.password);
+            if (!passwordsMatch) {
+                return res.json({ success: false, message: "Incorrect password!" });
+            }
+
+            return res.json({ success: true, data: foundUser });
+        }
+        catch (ex) {
+            return res.json({ success: false, message: ex });
+        }
+    },
+
+    updateUser: async function (req, res) {
+        try {
+            const userId = req.params.id;
+            const updateData = req.body;
+
+            const updatedUser = await UserModel.findOneAndUpdate(
+                { _id: userId },
+                updateData,
+                { new: true }
+            );
+
+            if (!updatedUser) {
+                throw "user not found!";
+            }
+
+            return res.json({ success: true, data: updatedUser, message: "User updated!" });
         }
         catch (ex) {
             return res.json({ success: false, message: ex });
         }
     }
+
 };
 
 module.exports = UserController;

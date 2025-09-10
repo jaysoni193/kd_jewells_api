@@ -1,7 +1,7 @@
 const CategoryRoutes = require('express').Router();
 const CategoryController = require('./../controllers/category_controller');
 
-CategoryRoutes.get("/fetchCategories", CategoryController.fetchAllCategories);
+CategoryRoutes.get("/", CategoryController.fetchAllCategories);
 CategoryRoutes.get("/:id", CategoryController.fetchCategoryById);
 CategoryRoutes.post("/", CategoryController.createCategory);
 
